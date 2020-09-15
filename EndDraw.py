@@ -8,31 +8,36 @@
     每次删除都要确认是否达成left要求，为否，则继续
     重新读取临时字典，再次遍历。
 '''
-# 总数
-number=9
-# 循环节
-cycle=4
-# 要求剩余数
-left=3
+def EndDraw(number,cycle,left):
+    '''
 
-# 创建一个对应的字典
-source={}
-for i in range(1,number+1):
-    source[str(i)]=i
-print(source)
-# 符合条件时，遍历字典筛选
-number += 1
-dict = {}
-while len(source)>left:
-    for key in list(source.keys()):
-        if source[key]%cycle == 0:
-            del source[key]
-        else:
-            dict[key]=number
-            number+=1
-        if len(source)==left:
-            dict = source
-            break
-    source=dict
-    dict={}
-print(list(source.keys()))
+    :param number: 总数
+    :param cycle: 每cycle人删一个
+    :param left: 需要的剩余人数
+    :return: 列表list
+    '''
+    # 创建一个对应的字典
+    source = {}
+    for i in range(1, number + 1):
+        source[str(i)] = i
+    # 符合条件时，遍历字典筛选
+    number += 1
+    dict = {}
+    while len(source) > left:
+        for key in list(source.keys()):
+            if source[key] % cycle == 0:
+                del source[key]
+            else:
+                dict[key] = number
+                number += 1
+            if len(source) == left:
+                dict = source
+                break
+        source = dict
+        dict = {}
+    return list(source.keys())
+
+if __name__ == '__main__':
+    print("实例场景：28名学生围成一圈，轮流从1至3报数，报到3淘汰，直到剩下两人为止")
+    print("实例场景：则最后剩下的两人位置分别是")
+    print(EndDraw(28,3,2))
