@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 '''
 定义总数number，循环节cycle和剩余数left
 由[1,number]进行遍历，去掉第 cycle * n 个数，直到剩余left个
@@ -8,7 +10,9 @@
     每次删除都要确认是否达成left要求，为否，则继续
     重新读取临时字典，再次遍历。
 '''
-def EndDraw(number,cycle,left):
+
+
+def EndDraw(number, cycle, left):
     '''
 
     :param number: 总数
@@ -37,7 +41,8 @@ def EndDraw(number,cycle,left):
         dict = {}
     return list(source.keys())
 
+
 if __name__ == '__main__':
     print("实例场景：28名学生围成一圈，轮流从1至3报数，报到3淘汰，直到剩下两人为止")
     print("实例场景：则最后剩下的两人位置分别是")
-    print(EndDraw(28,3,2))
+    print(EndDraw(28, 3, 2))
