@@ -39,4 +39,23 @@ def ConsoleColor(text, fcolor=False, bcolor=False, h=False, u=False, s=False, f=
 
 
 if __name__ == '__main__':
-    print(ConsoleColor('HelloWorld', fcolor='red', u=True, s=True))
+    s1="Use ConsoleColor to show a colorful output in pyCharm."
+    s2="You can set fcolor as Front Color, bcolor as Back Color."
+    s3="And others:"
+    s4="h : highlight"
+    s5="u : underline"
+    s6="s : shining"
+    s7="f : reverse"
+    s8="And with " \
+       "color white red green yellow blue turquoise gray"
+    s9="Tips: white and gray will change display in white console"
+    print(ConsoleColor('Hello', fcolor='red', u=True, s=True))
+    print(ConsoleColor(s1,fcolor="turquoise"))
+    print(ConsoleColor(s2,fcolor="green"))
+    print(ConsoleColor(s3,fcolor="yellow"))
+    print(ConsoleColor(s4,h=True))
+    print(ConsoleColor(s5,u=True))
+    print(ConsoleColor(s6,s=True))
+    print(ConsoleColor(s7,f=True))
+    print(ConsoleColor(s8))
+    print(ConsoleColor(s9,fcolor="red",bcolor="white",h=True))
