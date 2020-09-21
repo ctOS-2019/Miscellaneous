@@ -9,6 +9,13 @@
     在首次遍历时，不符合去除要求的数则存入临时字典（dict）中，等待下一次遍历，并设置新的编号
     每次删除都要确认是否达成left要求，为否，则继续
     重新读取临时字典，再次遍历。
+
+    可以简单理解为，
+    number 个人在一个窗口排队，每个人有一个序列号
+    符合 number/cycle 余数为0的人离开队伍，否则排到队伍最后去，并获得一个新的序列号
+
+    而在队伍刚形成时，每个人的序列号，与自己的位置相等
+    随后逐个 +1
 '''
 
 
@@ -24,25 +31,25 @@ def EndDraw(number, cycle, left):
     source = {}
     for i in range(1, number + 1):
         source[str(i)] = i
-    # 符合条件时，遍历字典筛选
     number += 1
-    dict = {}
-    while len(source) > left:
+    dict = {}  # 临时字典，储存每次循环时重新排队的人
+    while len(source) > left:  # 未达到人数要求，则循环
         for key in list(source.keys()):
-            if source[key] % cycle == 0:
+            if source[key] % cycle == 0:  # 符合要求，剔除队伍
                 del source[key]
             else:
-                dict[key] = number
+                dict[key] = number  # 否则，重新排队
                 number += 1
-            if len(source) == left:
+            if len(source) == left:  # 达到要求，则结束循环
                 dict = source
                 break
-        source = dict
-        dict = {}
+        source = dict  # 从临时字典拿出数据
+        dict = {}  # 清空临时字典
     return list(source.keys())
 
 
 if __name__ == '__main__':
     print("实例场景：28名学生围成一圈，轮流从1至3报数，报到3淘汰，直到剩下两人为止")
     print("实例场景：则最后剩下的两人位置分别是")
+    print("实例场景：EndDraw(number=28, cycle=3, left=2)")
     print(EndDraw(28, 3, 2))
